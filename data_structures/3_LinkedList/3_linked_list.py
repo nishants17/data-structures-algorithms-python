@@ -1,7 +1,10 @@
+import sys
+
 class Node:
     def __init__(self, data=None, next=None):
         self.data = data
         self.next = next
+
 
 class LinkedList:
     def __init__(self):
@@ -21,10 +24,11 @@ class LinkedList:
     def get_length(self):
         count = 0
         itr = self.head
+        #print("Head is ----------------------------", str(itr))
         while itr:
-            count+=1
+            count += 1
             itr = itr.next
-
+        print(count)
         return count
 
     def insert_at_begining(self, data):
@@ -86,11 +90,51 @@ class LinkedList:
             self.insert_at_end(data)
 
 
+    def insert_after_value(self, data_after, data_to_insert):
+        if self.head is None:
+            return
+
+        if self.head.data == data_after:
+            self.head.next = Node(data_to_insert, self.head.next)
+            return
+
+        itr = self.head
+        while itr:
+            if itr.data == data_after:
+                itr.next = Node(data_to_insert, itr.next)
+                break
+
+            itr = itr.next
+
+    def remove_by_value(self, data):
+        if self.head is None:
+            return
+
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+
+        itr = self.head
+        while itr.next:
+            if itr.next.data == data:
+                itr.next = itr.next.next
+                break
+            itr = itr.next
+
+
+
+# Remove first node that contains data
+
 if __name__ == '__main__':
     ll = LinkedList()
     ll.insert_values(["banana","mango","grapes","orange"])
+    ll.get_length()
+    #sys.exit(1)
     ll.insert_at(1,"blueberry")
-    ll.remove_at(2)
+    ll.insert_after_value("blueberry","raspberry")
+    ll.print()
+    sys.exit(1)
+    #ll.remove_at(2)
     ll.print()
 
     ll.insert_values([45,7,12,567,99])

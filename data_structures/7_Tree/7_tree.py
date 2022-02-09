@@ -25,10 +25,12 @@ class TreeNode:
         child.parent = self
         self.children.append(child)
 
+
 def build_product_tree():
     root = TreeNode("Electronics")
 
     laptop = TreeNode("Laptop")
+
     laptop.add_child(TreeNode("Mac"))
     laptop.add_child(TreeNode("Surface"))
     laptop.add_child(TreeNode("Thinkpad"))
@@ -47,6 +49,10 @@ def build_product_tree():
     root.add_child(tv)
 
     root.print_tree()
+
+    # Building location tree using tree node class
+
+
 
 if __name__ == '__main__':
     build_product_tree()
